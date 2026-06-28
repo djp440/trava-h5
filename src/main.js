@@ -1,7 +1,8 @@
 import { createApp } from 'vue'
 import Vant from 'vant'
 import 'vant/lib/index.css'
-import './style.css'
+// 只保留vant样式
+// import './style.css' 
 import App from './App.vue'
 import router from './router'
 

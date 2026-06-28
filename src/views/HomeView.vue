@@ -23,6 +23,6 @@
 }
 
 .content {
-  padding: 16px;
+  padding: 16px 16px 72px;
 }
 </style>
