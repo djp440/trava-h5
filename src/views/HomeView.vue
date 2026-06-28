@@ -2,6 +2,10 @@
   <div class="page">
     <main class="content">
       <van-space direction="vertical" fill size="16">
+        <van-notice-bar
+          left-icon="volume-o"
+          text="智能旅游助手已上线，为你推荐更合适的旅行路线。"
+        />
         <van-button type="primary" block>Vant 已接入</van-button>
         <van-cell-group inset>
           <van-cell title="UI 组件库" value="Vant 4" />
