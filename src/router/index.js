@@ -9,16 +9,19 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
+      meta: { title: '智能旅游助手' },
       component: HomeView,
     },
     {
       path: '/chat',
       name: 'chat',
+      meta: { title: '对话' },
       component: ChatView,
     },
     {
       path: '/profile',
       name: 'profile',
+      meta: { title: '我的' },
       component: ProfileView,
     },
   ],

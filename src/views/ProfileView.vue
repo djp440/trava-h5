@@ -1,15 +1,12 @@
 <template>
-  <van-config-provider>
-    <div class="page">
-      <van-nav-bar title="我的" />
-      <main class="content">
-        <van-cell-group inset>
-          <van-cell title="页面名称" value="Profile" />
-          <van-cell title="路由路径" value="/profile" />
-        </van-cell-group>
-      </main>
-    </div>
-  </van-config-provider>
+  <div class="page">
+    <main class="content">
+      <van-cell-group inset>
+        <van-cell title="页面名称" value="Profile" />
+        <van-cell title="路由路径" value="/profile" />
+      </van-cell-group>
+    </main>
+  </div>
 </template>
 
 <style scoped>
