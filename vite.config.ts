@@ -1,3 +1,4 @@
+// Build config: Vue SFC support plus Element Plus component auto-registration.
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite'

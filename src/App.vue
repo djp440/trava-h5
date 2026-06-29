@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// Root shell: owns responsive top navigation, bottom navigation, and route outlet.
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
@@ -12,12 +13,14 @@ const router = useRouter()
 const route = useRoute()
 const title = computed(() => route.meta.title || 'Trava H5')
 
+// Icon registry used by both desktop and mobile navigation.
 const iconMap: Record<AppNavIconName, typeof HomeFilled> = {
   'home-filled': HomeFilled,
   'chat-dot-round': ChatDotRound,
   'user-filled': UserFilled,
 }
 
+// Mobile bottom nav uses explicit button clicks instead of Element Plus router menu.
 function navigate(path: string) {
   if (route.path !== path) {
     router.push(path)

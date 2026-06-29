@@ -1,3 +1,4 @@
+// Router table: one top-level route per primary navigation destination.
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import { navigationItems } from '../config/navigation'

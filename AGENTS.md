@@ -1,2 +1,3 @@
-- 必须有适合agent阅读的注释
+- 代码必须有适合agent阅读的注释
 - 优先级：使用element plus组件 > 复用已有的自定义组件 > 用element plus组件合成新的自定义组件 > 完全自定义新组件 > 不使用组件，直接在页面上编写
+- 请查阅[Element plus组件文档](https://github.com/element-plus/element-plus/tree/dev/docs/en-US)

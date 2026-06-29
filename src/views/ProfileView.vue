@@ -1,13 +1,14 @@
 <script setup lang="ts">
+// Profile view: placeholder metadata card until account and settings UI lands.
 import BaseCard from '../components/BaseCard.vue'
 
 const pageInfo = [
   {
-    label: '\u9875\u9762\u540D\u79F0',
+    label: '页面名称',
     value: 'Profile',
   },
   {
-    label: '\u8DEF\u7531\u8DEF\u5F84',
+    label: '路由路径',
     value: '/profile',
   },
 ] as const

@@ -1,11 +1,13 @@
 <script setup lang="ts">
+// Home view: trip planner form plus lightweight travel recommendation summaries.
 import { reactive } from 'vue'
+import type { AutocompleteFetchSuggestionsCallback } from 'element-plus'
 import BaseCard from '../components/BaseCard.vue'
 
 interface TripFormModel {
   destination: string
   budget: string
-  days: string
+  days: number
 }
 
 interface DescriptionItem {
@@ -13,119 +15,282 @@ interface DescriptionItem {
   value: string
 }
 
+interface DestinationSuggestion {
+  value: string
+}
+
+// Centralized page copy keeps future content edits in one place.
 const copy = {
-  alert: '\u667A\u80FD\u65C5\u6E38\u52A9\u624B\u5DF2\u4E0A\u7EBF\uFF0C\u4E3A\u4F60\u63A8\u8350\u66F4\u5408\u9002\u7684\u65C5\u884C\u8DEF\u7EBF\u3002',
-  ready: 'Element Plus \u5DF2\u63A5\u5165',
-  planner: '\u89C4\u5212\u65C5\u7A0B',
-  destination: '\u76EE\u7684\u5730',
-  destinationPlaceholder: '\u8BF7\u8F93\u5165\u76EE\u7684\u5730',
-  budget: '\u9884\u7B97',
-  budgetPlaceholder: '\u8BF7\u8F93\u5165\u9884\u7B97',
-  days: '\u5929\u6570',
-  daysPlaceholder: '\u8BF7\u8F93\u5165\u5929\u6570',
-  recommendation: '\u65C5\u884C\u63A8\u8350',
-  service: '\u8D34\u5FC3\u670D\u52A1',
+  alert: '智能旅游助手已上线，为你推荐更合适的旅行路线。',
+  planner: '规划旅程',
+  startPlanning: '开始规划',
+  destination: '目的地',
+  destinationPlaceholder: '请输入目的地',
+  budget: '预算',
+  budgetPlaceholder: '请输入预算',
+  budgetUnit: '元',
+  days: '天数',
+  recommendation: '旅行推荐',
+  recommendationHint: '根据你的时间和预算，快速锁定更合适的旅程方向。',
+  service: '贴心服务',
+  serviceHint: '行前提醒、行中协助、灵感补给都集中在这里。',
 } as const
 
+// Destination presets support quick suggestions while still allowing free input.
+const destinationOptions: DestinationSuggestion[] = [
+  { value: '北京' },
+  { value: '上海' },
+  { value: '杭州' },
+  { value: '成都' },
+  { value: '三亚' },
+  { value: '厦门' },
+]
+
+// Static summary blocks shown next to the planner card on larger screens.
 const recommendationItems: DescriptionItem[] = [
   {
-    label: '\u884C\u7A0B\u63A8\u8350',
-    value: '\u667A\u80FD\u5339\u914D',
+    label: '行程推荐',
+    value: '智能匹配',
   },
   {
-    label: '\u76EE\u7684\u5730\u7075\u611F',
-    value: '\u968F\u65F6\u63A2\u7D22',
+    label: '目的地灵感',
+    value: '随时探索',
   },
 ]
 
 const serviceItems: DescriptionItem[] = [
   {
-    label: '\u65C5\u884C\u52A9\u624B',
-    value: '\u5728\u7EBF\u5F85\u547D',
+    label: '旅行助手',
+    value: '在线待命',
   },
   {
-    label: '\u51FA\u884C\u63D0\u9192',
-    value: '\u53CA\u65F6\u540C\u6B65',
+    label: '出行提醒',
+    value: '及时同步',
   },
 ]
 
+// Local form state for the trip planning workflow.
 const tripForm = reactive<TripFormModel>({
   destination: '',
   budget: '',
-  days: '',
+  days: 3,
 })
+
+function queryDestinationSuggestions(
+  queryString: string,
+  callback: AutocompleteFetchSuggestionsCallback<DestinationSuggestion>,
+) {
+  const normalizedQuery = queryString.trim().toLowerCase()
+  const results = normalizedQuery
+    ? destinationOptions.filter((option) =>
+        option.value.toLowerCase().includes(normalizedQuery),
+      )
+    : destinationOptions
+
+  callback(results)
+}
 </script>
 
 <template>
   <div class="page">
     <main class="page__content">
-      <ElSpace direction="vertical" fill :size="20">
+      <section class="home-layout">
         <ElAlert
           :title="copy.alert"
           type="info"
           :closable="false"
           show-icon
+          class="home-layout__alert"
         />
-        <ElButton type="primary" class="page__primary-button">
-          {{ copy.ready }}
-        </ElButton>
-        <BaseCard :title="copy.planner">
-          <ElForm label-position="top" class="home-form">
-            <ElFormItem :label="copy.destination">
-              <ElInput
+
+        <BaseCard :title="copy.planner" class="home-layout__planner">
+          <ElForm class="home-form">
+            <div class="home-form-row">
+              <label class="home-form-row__label">{{ copy.destination }}</label>
+              <ElAutocomplete
                 v-model="tripForm.destination"
+                :fetch-suggestions="queryDestinationSuggestions"
                 :placeholder="copy.destinationPlaceholder"
+                class="home-form__control home-form__control--text"
+                clearable
               />
-            </ElFormItem>
-            <ElFormItem :label="copy.budget">
+            </div>
+
+            <div class="home-form-row">
+              <label class="home-form-row__label">{{ copy.budget }}</label>
               <ElInput
                 v-model="tripForm.budget"
                 :placeholder="copy.budgetPlaceholder"
-                type="number"
-              />
-            </ElFormItem>
-            <ElFormItem :label="copy.days">
-              <ElInput
+                class="home-form__control home-form__control--text"
+              >
+                <template #suffix>{{ copy.budgetUnit }}</template>
+              </ElInput>
+            </div>
+
+            <div class="home-form-row">
+              <label class="home-form-row__label">{{ copy.days }}</label>
+              <ElInputNumber
                 v-model="tripForm.days"
-                :placeholder="copy.daysPlaceholder"
-                type="number"
+                :min="1"
+                :max="30"
+                :step="1"
+                controls-position="right"
+                class="home-form__control home-form__control--number"
               />
-            </ElFormItem>
+            </div>
+
+            <div class="home-form__action">
+              <ElButton type="primary" class="home-form__submit">
+                {{ copy.startPlanning }}
+              </ElButton>
+            </div>
           </ElForm>
         </BaseCard>
-        <BaseCard :title="copy.recommendation">
-          <ElDescriptions :column="1" class="card-descriptions">
-            <ElDescriptionsItem
-              v-for="item in recommendationItems"
-              :key="item.label"
-              :label="item.label"
-            >
-              {{ item.value }}
-            </ElDescriptionsItem>
-          </ElDescriptions>
-        </BaseCard>
-        <BaseCard :title="copy.service">
-          <ElDescriptions :column="1" class="card-descriptions">
-            <ElDescriptionsItem
-              v-for="item in serviceItems"
-              :key="item.label"
-              :label="item.label"
-            >
-              {{ item.value }}
-            </ElDescriptionsItem>
-          </ElDescriptions>
-        </BaseCard>
-      </ElSpace>
+
+        <div class="home-layout__side">
+          <BaseCard :title="copy.recommendation">
+            <p class="home-card__hint">{{ copy.recommendationHint }}</p>
+            <ElDescriptions :column="1" class="card-descriptions">
+              <ElDescriptionsItem
+                v-for="item in recommendationItems"
+                :key="item.label"
+                :label="item.label"
+              >
+                {{ item.value }}
+              </ElDescriptionsItem>
+            </ElDescriptions>
+          </BaseCard>
+
+          <BaseCard :title="copy.service">
+            <p class="home-card__hint">{{ copy.serviceHint }}</p>
+            <ElDescriptions :column="1" class="card-descriptions">
+              <ElDescriptionsItem
+                v-for="item in serviceItems"
+                :key="item.label"
+                :label="item.label"
+              >
+                {{ item.value }}
+              </ElDescriptionsItem>
+            </ElDescriptions>
+          </BaseCard>
+        </div>
+      </section>
     </main>
   </div>
 </template>
 
 <style scoped>
-.page__primary-button {
+.home-layout {
+  display: grid;
+  gap: 20px;
+}
+
+.home-layout__side {
+  display: grid;
+  gap: 20px;
+}
+
+.home-card__hint {
+  margin: 0 0 16px;
+  color: var(--trava-text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.home-form {
+  display: grid;
+  gap: 14px;
+}
+
+.home-form-row {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  column-gap: 12px;
+  align-items: center;
+  min-height: 48px;
+}
+
+.home-form-row__label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 48px;
+  color: var(--trava-text);
+  font-size: 1rem;
+  line-height: 48px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.home-form__control {
   width: 100%;
 }
 
-.home-form :deep(.el-form-item:last-child) {
-  margin-bottom: 0;
+.home-form__control--text :deep(.el-autocomplete),
+.home-form__control--text :deep(.el-input) {
+  width: 100%;
+}
+
+.home-form__control--text :deep(.el-input__wrapper),
+.home-form__control--number :deep(.el-input__wrapper) {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 48px;
+  height: 48px;
+}
+
+.home-form__control--text :deep(.el-input__inner),
+.home-form__control--number :deep(.el-input__inner) {
+  height: 46px;
+  line-height: 46px;
+  text-align: left;
+}
+
+.home-form__control--number :deep(.el-input-number) {
+  width: 100%;
+  height: 48px;
+}
+
+.home-form__submit {
+  width: 100%;
+}
+
+.home-form__action {
+  margin-top: 2px;
+}
+
+@media (min-width: 992px) {
+  .home-layout {
+    align-items: start;
+    grid-template-columns: minmax(420px, 1.1fr) minmax(320px, 0.9fr);
+    grid-template-areas:
+      'alert alert'
+      'planner side';
+  }
+
+  .home-layout__alert {
+    grid-area: alert;
+  }
+
+  .home-layout__planner {
+    grid-area: planner;
+    position: sticky;
+    top: 128px;
+  }
+
+  .home-layout__side {
+    grid-area: side;
+  }
+}
+
+@media (min-width: 1400px) {
+  .home-layout {
+    grid-template-columns: minmax(460px, 1.15fr) minmax(420px, 1fr);
+    gap: 24px;
+  }
+
+  .home-layout__side {
+    gap: 24px;
+  }
 }
 </style>

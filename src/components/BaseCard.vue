@@ -1,9 +1,9 @@
 <script setup lang="ts">
+// Shared card container used across views for consistent header/body spacing.
 interface Props {
   title?: string
 }
 
-// 统一卡片容器，避免页面重复维护 Element Plus 的外观细节。
 defineProps<Props>()
 </script>
 
