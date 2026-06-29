@@ -6,7 +6,7 @@
 
 ## User Preferences
 
-<!-- How the user likes things done. Code style, tools, patterns, communication. -->
+- 用户希望首页 UI 复刻优先遵循 Element Plus 组件风格，而不是做像素级临摹。
 
 ## Key Learnings
 

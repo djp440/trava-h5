@@ -1,5 +1,8 @@
 <script setup lang="ts">
-// Home view: trip planner form plus lightweight travel recommendation summaries.
+import {
+  ChatDotRound,
+  UserFilled,
+} from '@element-plus/icons-vue'
 import {
   computed,
   nextTick,
@@ -9,7 +12,9 @@ import {
   ref,
 } from 'vue'
 import type { AutocompleteFetchSuggestionsCallback } from 'element-plus'
+import { useRouter } from 'vue-router'
 import BaseCard from '../components/BaseCard.vue'
+import { navigationItems } from '../config/navigation'
 
 interface TripFormModel {
   destination: string
@@ -17,9 +22,11 @@ interface TripFormModel {
   days: number
 }
 
-interface DescriptionItem {
+interface ShortcutEntry {
   label: string
-  value: string
+  icon: typeof ChatDotRound
+  path: string
+  buttonType: 'primary' | 'default'
 }
 
 interface DestinationSuggestion {
@@ -30,7 +37,6 @@ const NOTICE_GAP = 24
 const NOTICE_MIN_DURATION = 8
 const NOTICE_SCROLL_SPEED = 40
 
-// Centralized page copy keeps future content edits in one place.
 const copy = {
   alert: '智能旅游助手已上线，为你推荐合适的旅行路线。',
   planner: '规划旅程',
@@ -41,13 +47,12 @@ const copy = {
   budgetPlaceholder: '请输入预算',
   budgetUnit: '元',
   days: '天数',
-  recommendation: '旅行推荐',
-  recommendationHint: '根据你的时间和预算，快速锁定更合适的旅程方向。',
-  service: '贴心服务',
-  serviceHint: '行前提醒、行中协助、灵感补给都集中在这里。',
+  shortcuts: '快捷入口',
+  aiChat: 'AI 对话',
+  profile: '我的',
+  popularDestinations: '热门目的地',
 } as const
 
-// Destination presets support quick suggestions while still allowing free input.
 const destinationOptions: DestinationSuggestion[] = [
   { value: '北京' },
   { value: '上海' },
@@ -57,35 +62,39 @@ const destinationOptions: DestinationSuggestion[] = [
   { value: '厦门' },
 ]
 
-// Static summary blocks shown next to the planner card on larger screens.
-const recommendationItems: DescriptionItem[] = [
+const shortcutEntries: ShortcutEntry[] = [
   {
-    label: '行程推荐',
-    value: '智能匹配',
+    label: copy.aiChat,
+    icon: ChatDotRound,
+    path: navigationItems[1].path,
+    buttonType: 'primary',
   },
   {
-    label: '目的地灵感',
-    value: '随时探索',
-  },
-]
-
-const serviceItems: DescriptionItem[] = [
-  {
-    label: '旅行助手',
-    value: '在线待命',
-  },
-  {
-    label: '出行提醒',
-    value: '及时同步',
+    label: copy.profile,
+    icon: UserFilled,
+    path: navigationItems[2].path,
+    buttonType: 'default',
   },
 ]
 
-// Local form state for the trip planning workflow.
+const popularDestinations = [
+  '北京',
+  '上海',
+  '广州',
+  '深圳',
+  '成都',
+  '杭州',
+  '西安',
+  '重庆',
+] as const
+
 const tripForm = reactive<TripFormModel>({
   destination: '',
   budget: '',
   days: 3,
 })
+
+const router = useRouter()
 
 const alertViewportRef = ref<HTMLElement | null>(null)
 const alertTextRef = ref<HTMLElement | null>(null)
@@ -122,6 +131,16 @@ function queryDestinationSuggestions(
     : destinationOptions
 
   callback(results)
+}
+
+// 使用路由跳转保持快捷入口与全局导航行为一致。
+function navigateToShortcut(path: string) {
+  router.push(path)
+}
+
+// 点击热门目的地时同步回填到表单输入，减少重复输入。
+function selectPopularDestination(destination: string) {
+  tripForm.destination = destination
 }
 
 // 根据可视区域与文本实际宽度决定是否启用滚动动画。
@@ -243,30 +262,41 @@ onBeforeUnmount(() => {
         </BaseCard>
 
         <div class="home-layout__side">
-          <BaseCard :title="copy.recommendation">
-            <p class="home-card__hint">{{ copy.recommendationHint }}</p>
-            <ElDescriptions :column="1" class="card-descriptions">
-              <ElDescriptionsItem
-                v-for="item in recommendationItems"
-                :key="item.label"
-                :label="item.label"
+          <BaseCard :title="copy.shortcuts">
+            <ElRow :gutter="12" class="home-shortcuts">
+              <ElCol
+                v-for="entry in shortcutEntries"
+                :key="entry.path"
+                :span="12"
               >
-                {{ item.value }}
-              </ElDescriptionsItem>
-            </ElDescriptions>
+                <ElButton
+                  :type="entry.buttonType"
+                  plain
+                  class="home-shortcuts__button"
+                  @click="navigateToShortcut(entry.path)"
+                >
+                  <ElIcon class="home-shortcuts__icon">
+                    <component :is="entry.icon" />
+                  </ElIcon>
+                  <span class="home-shortcuts__label">{{ entry.label }}</span>
+                </ElButton>
+              </ElCol>
+            </ElRow>
           </BaseCard>
 
-          <BaseCard :title="copy.service">
-            <p class="home-card__hint">{{ copy.serviceHint }}</p>
-            <ElDescriptions :column="1" class="card-descriptions">
-              <ElDescriptionsItem
-                v-for="item in serviceItems"
-                :key="item.label"
-                :label="item.label"
+          <BaseCard :title="copy.popularDestinations">
+            <div class="home-destinations">
+              <ElButton
+                v-for="destination in popularDestinations"
+                :key="destination"
+                :type="tripForm.destination === destination ? 'primary' : 'default'"
+                :plain="tripForm.destination !== destination"
+                class="home-destinations__button"
+                @click="selectPopularDestination(destination)"
               >
-                {{ item.value }}
-              </ElDescriptionsItem>
-            </ElDescriptions>
+                {{ destination }}
+              </ElButton>
+            </div>
           </BaseCard>
         </div>
       </section>
@@ -323,11 +353,41 @@ onBeforeUnmount(() => {
   gap: 20px;
 }
 
-.home-card__hint {
-  margin: 0 0 16px;
-  color: var(--trava-text);
-  font-size: 0.95rem;
-  line-height: 1.6;
+.home-shortcuts {
+  margin: 0;
+}
+
+.home-shortcuts__button,
+.home-destinations__button {
+  width: 100%;
+}
+
+.home-shortcuts__button {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 128px;
+  padding: 20px 12px;
+}
+
+.home-shortcuts__icon {
+  font-size: 1.75rem;
+}
+
+.home-shortcuts__label {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.home-destinations {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.home-destinations__button {
+  min-height: 48px;
+  margin: 0;
 }
 
 .home-form {
@@ -404,6 +464,20 @@ onBeforeUnmount(() => {
 
   to {
     transform: translateX(var(--notice-scroll-offset));
+  }
+}
+
+@media (max-width: 767px) {
+  .home-shortcuts__button {
+    min-height: 112px;
+  }
+
+  .home-destinations {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-destinations__button {
+    min-height: 44px;
   }
 }
 

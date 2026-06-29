@@ -74,6 +74,60 @@
       ],
       "occurrences": 1,
       "last_seen": "2026-06-29T19:33:00+08:00"
+    },
+    {
+      "id": "bug-006",
+      "timestamp": "2026-06-29T19:46:00+08:00",
+      "error_message": "首页右侧第 2、3 个 card 内容与设计稿不一致",
+      "file": "src/views/HomeView.vue",
+      "root_cause": "首页右侧仍保留旧的旅行推荐/贴心服务描述卡片，没有替换为设计稿要求的快捷入口与热门目的地网格布局。",
+      "fix": "将右侧两个 BaseCard 分别改为 AI 对话/我的快捷入口和 8 个热门目的地按钮，并让热门目的地按钮点击后回填表单目的地。",
+      "tags": [
+        "ui",
+        "home",
+        "card",
+        "element-plus",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-29T19:46:00+08:00"
+    },
+    {
+      "id": "bug-006",
+      "timestamp": "2026-06-29T11:58:56.628Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/views/HomeView.vue",
+      "root_cause": "39 lines replaced/restructured",
+      "fix": "Rewrote 70→43 lines (39 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-29T11:58:56.628Z"
+    },
+    {
+      "id": "bug-008",
+      "timestamp": "2026-06-29T20:00:00+08:00",
+      "error_message": "首页右侧 card 初版实现过度贴近截图，未优先遵循 Element Plus 组件风格",
+      "file": "src/views/HomeView.vue",
+      "root_cause": "首版实现使用了较多自定义块级样式去模拟视觉稿，虽然内容正确，但不符合当前项目优先使用 Element Plus 组件风格的协作预期。",
+      "fix": "将快捷入口和热门目的地重构为基于 `ElButton`、`ElRow`、`ElCol` 的实现，仅保留必要布局样式，并保留原有跳转与回填交互。",
+      "tags": [
+        "ui",
+        "home",
+        "element-plus",
+        "refactor",
+        "vue"
+      ],
+      "related_bugs": [
+        "bug-006"
+      ],
+      "occurrences": 1,
+      "last_seen": "2026-06-29T20:00:00+08:00"
     }
   ]
 }

@@ -26,3 +26,22 @@
 | 19:33 | Edited src/views/HomeView.vue | CSS: min-height, height | ~20 |
 | 19:33 | 统一开始规划按钮高度 | `src/views/HomeView.vue` | 按钮已与表单控件统一为 48px，并完成浏览器实测验证 | ~0 |
 | 19:34 | Session end: 2 writes across 1 files (HomeView.vue) | 9 reads | ~4800 tok |
+
+## Session: 2026-06-29 19:36
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 19:41 | Edited src/views/HomeView.vue | modified queryDestinationSuggestions() | ~3166 |
+| 19:44 | Edited src/views/HomeView.vue | CSS: aiChat, profile | ~24 |
+| 19:44 | Edited src/views/HomeView.vue | 12→12 lines | ~61 |
+| 19:46 | 首页第 2、3 个 card 改为快捷入口与热门目的地 | `src/views/HomeView.vue` | 已按截图替换为 AI 对话/我的快捷入口及 8 个热门目的地，并完成浏览器实测验证 | ~0 |
+| 19:47 | Session end: 3 writes across 1 files (HomeView.vue) | 12 reads | ~11970 tok |
+| 19:57 | Edited src/views/HomeView.vue | added 1 import(s) | ~84 |
+| 19:57 | Edited src/views/HomeView.vue | CSS: buttonType | ~42 |
+| 19:57 | Edited src/views/HomeView.vue | CSS: buttonType, buttonType | ~75 |
+| 19:58 | Edited src/views/HomeView.vue | 7→9 lines | ~47 |
+| 19:58 | Edited src/views/HomeView.vue | CSS: path, destination | ~179 |
+| 19:58 | Edited src/views/HomeView.vue | CSS: ElRow, ElButton | ~380 |
+| 19:58 | Edited src/views/HomeView.vue | reduced (-27 lines) | ~157 |
+| 19:59 | 首页第 2、3 个 card 改为 Element Plus 风格实现 | `src/views/HomeView.vue` | 已改为基于 ElButton、ElRow、ElCol 的快捷入口与热门目的地布局，并完成浏览器实测验证 | ~0 |
+| 20:01 | Session end: 11 writes across 1 files (HomeView.vue) | 14 reads | ~13435 tok |

@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-06-29T10:46:18.552Z",
   "lifetime": {
-    "total_tokens_estimated": 20708,
-    "total_reads": 36,
-    "total_writes": 8,
-    "total_sessions": 2,
-    "anatomy_hits": 13,
-    "anatomy_misses": 21,
-    "repeated_reads_blocked": 25,
-    "estimated_savings_vs_bare_cli": 37614
+    "total_tokens_estimated": 46113,
+    "total_reads": 62,
+    "total_writes": 22,
+    "total_sessions": 3,
+    "anatomy_hits": 25,
+    "anatomy_misses": 31,
+    "repeated_reads_blocked": 35,
+    "estimated_savings_vs_bare_cli": 61473
   },
   "sessions": [
     {
@@ -334,6 +334,266 @@
         "writes_count": 2,
         "repeated_reads_blocked": 5,
         "anatomy_lookups": 4
+      }
+    },
+    {
+      "id": "session-2026-06-29-1936",
+      "started": "2026-06-29T11:36:28.593Z",
+      "ended": "2026-06-29T11:47:17.342Z",
+      "reads": [
+        {
+          "file": "C:/Users/15575/project/trava-h5/AGENTS.md",
+          "tokens_estimated": 60,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/.wolf/cerebrum.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 2810,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/components/BaseCard.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/package.json",
+          "tokens_estimated": 170,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/App.vue",
+          "tokens_estimated": 707,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/style.css",
+          "tokens_estimated": 1574,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/AppData/Local/Temp/claude/c--Users-15575-project-trava-h5/213ff880-464d-43d6-b621-64064ff18fbe/tasks/bak5kjgz0.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/.wolf/anatomy.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/.wolf/buglog.json",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/.claude/worktrees/agent-abcf5326ceb061f3b/src/views/HomeView.vue",
+          "tokens_estimated": 3166,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/.wolf/memory.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 3392,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 26,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 65,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 8487,
+        "output_tokens_estimated": 3483,
+        "reads_count": 12,
+        "writes_count": 3,
+        "repeated_reads_blocked": 4,
+        "anatomy_lookups": 6
+      }
+    },
+    {
+      "id": "session-2026-06-29-1936",
+      "started": "2026-06-29T11:36:28.593Z",
+      "ended": "2026-06-29T12:01:20.844Z",
+      "reads": [
+        {
+          "file": "C:/Users/15575/project/trava-h5/AGENTS.md",
+          "tokens_estimated": 60,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/.wolf/cerebrum.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 3169,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/components/BaseCard.vue",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/package.json",
+          "tokens_estimated": 170,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/App.vue",
+          "tokens_estimated": 707,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/style.css",
+          "tokens_estimated": 1574,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/AppData/Local/Temp/claude/c--Users-15575-project-trava-h5/213ff880-464d-43d6-b621-64064ff18fbe/tasks/bak5kjgz0.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/.wolf/anatomy.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/.wolf/buglog.json",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/.claude/worktrees/agent-abcf5326ceb061f3b/src/views/HomeView.vue",
+          "tokens_estimated": 3166,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/.wolf/memory.md",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/.claude/projects/c--Users-15575-project-trava-h5/memory/MEMORY.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/15575/AppData/Local/Temp/claude/c--Users-15575-project-trava-h5/213ff880-464d-43d6-b621-64064ff18fbe/tasks/bg05penxu.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 3392,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 26,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 65,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 90,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 45,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 81,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 192,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 407,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 168,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+          "tokens_estimated": 73,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 8846,
+        "output_tokens_estimated": 4589,
+        "reads_count": 14,
+        "writes_count": 11,
+        "repeated_reads_blocked": 6,
+        "anatomy_lookups": 6
       }
     }
   ],
