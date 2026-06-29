@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "bugs": [
+    {
+      "id": "bug-001",
+      "timestamp": "2026-06-29T10:52:21.324Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/views/HomeView.vue",
+      "root_cause": "Had '智能旅游助手已上线，为你推荐更合适的旅行路线。'",
+      "fix": "Changed to '智能旅游助手已上线，为你推荐合适的旅行路线。'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-29T10:52:21.324Z"
+    },
+    {
+      "id": "bug-003",
+      "timestamp": "2026-06-29T11:05:30.000Z",
+      "error_message": "Repeated edits while implementing notice marquee behavior",
+      "file": "src/views/HomeView.vue",
+      "root_cause": "The initial notice implementation only truncated overflowing text and did not satisfy the runtime requirement to auto-scroll when content exceeds the available width.",
+      "fix": "Reworked the notice to measure overflow at runtime, toggle marquee mode only when needed, and duplicate the text node for seamless horizontal scrolling.",
+      "tags": [
+        "ui",
+        "notice",
+        "marquee",
+        "vue"
+      ],
+      "related_bugs": [
+        "bug-001",
+        "bug-002"
+      ],
+      "occurrences": 1,
+      "last_seen": "2026-06-29T11:05:30.000Z"
+    },
+    {
+      "id": "bug-004",
+      "timestamp": "2026-06-29T19:25:33+08:00",
+      "error_message": "目的地的表单组件高度与其他两个表单组件高度不一致",
+      "file": "src/views/HomeView.vue",
+      "root_cause": "现有 scoped 样式只稳定覆盖了普通 `ElInput` 与 `ElInputNumber` 的内部层级，`ElAutocomplete` 额外包裹的 `.el-autocomplete`/`.el-input` 结构没有被完整命中，最终仍按默认 40px 渲染。",
+      "fix": "补充 `.home-form` 下针对 `ElAutocomplete` 外层与内部 `.el-input`、`.el-input__wrapper`、`.el-input__inner` 的深度选择器，使三个表单控件统一为 48px 高度。",
+      "tags": [
+        "ui",
+        "form",
+        "element-plus",
+        "autocomplete",
+        "vue"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-29T19:25:33+08:00"
+    }
+  ]
+}

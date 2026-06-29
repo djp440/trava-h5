@@ -1,0 +1,67 @@
+{
+  "session_id": "session-2026-06-29-1920",
+  "started": "2026-06-29T11:20:30.475Z",
+  "files_read": {
+    "C:/Users/15575/project/trava-h5/.wolf/anatomy.md": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-06-29T11:21:03.443Z"
+    },
+    "C:/Users/15575/project/trava-h5/.wolf/buglog.json": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-06-29T11:21:18.821Z"
+    },
+    "C:/Users/15575/project/trava-h5/.wolf/cerebrum.md": {
+      "count": 2,
+      "tokens": 0,
+      "first_read": "2026-06-29T11:21:18.971Z"
+    },
+    "C:/Users/15575/project/trava-h5/AGENTS.md": {
+      "count": 1,
+      "tokens": 60,
+      "first_read": "2026-06-29T11:21:19.041Z"
+    },
+    "C:/Users/15575/project/trava-h5/.wolf/OPENWOLF.md": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-06-29T11:21:31.413Z"
+    },
+    "C:/Users/15575/project/trava-h5/src/views/HomeView.vue": {
+      "count": 3,
+      "tokens": 2761,
+      "first_read": "2026-06-29T11:21:31.482Z"
+    },
+    "C:/Users/15575/project/trava-h5/src/style.css": {
+      "count": 1,
+      "tokens": 1574,
+      "first_read": "2026-06-29T11:21:31.586Z"
+    },
+    "C:/Users/15575/project/trava-h5/.wolf/memory.md": {
+      "count": 2,
+      "tokens": 0,
+      "first_read": "2026-06-29T11:22:52.250Z"
+    },
+    "C:/Users/15575/project/trava-h5/package.json": {
+      "count": 1,
+      "tokens": 170,
+      "first_read": "2026-06-29T11:22:52.278Z"
+    }
+  },
+  "files_written": [
+    {
+      "file": "C:/Users/15575/project/trava-h5/src/views/HomeView.vue",
+      "action": "edit",
+      "tokens": 213,
+      "at": "2026-06-29T11:25:01.277Z"
+    }
+  ],
+  "edit_counts": {
+    "src/views/HomeView.vue": 1
+  },
+  "anatomy_hits": 4,
+  "anatomy_misses": 4,
+  "repeated_reads_warned": 4,
+  "cerebrum_warnings": 0,
+  "stop_count": 1
+}
