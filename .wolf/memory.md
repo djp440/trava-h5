@@ -23,3 +23,6 @@
 | 19:25 | 修复首页目的地输入框高度不一致 | `src/views/HomeView.vue` | 已与预算、天数控件统一为 48px，并完成浏览器实测验证 | ~0 |
 | 19:25 | Edited src/views/HomeView.vue | modified deep() | ~199 |
 | 19:26 | Session end: 1 writes across 1 files (HomeView.vue) | 9 reads | ~4778 tok |
+| 19:33 | Edited src/views/HomeView.vue | CSS: min-height, height | ~20 |
+| 19:33 | 统一开始规划按钮高度 | `src/views/HomeView.vue` | 按钮已与表单控件统一为 48px，并完成浏览器实测验证 | ~0 |
+| 19:34 | Session end: 2 writes across 1 files (HomeView.vue) | 9 reads | ~4800 tok |

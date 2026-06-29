@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-29T11:25:01.265Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-29T11:33:02.547Z
 > Files: 25 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
@@ -52,5 +52,5 @@
 ## src/views/
 
 - `ChatView.vue` — Vue: setup, TS (~196 tok)
-- `HomeView.vue` — Vue: setup (~2801 tok)
+- `HomeView.vue` — Vue: setup (~2810 tok)
 - `ProfileView.vue` — Vue: setup, TS (~196 tok)

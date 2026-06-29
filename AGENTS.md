@@ -1,6 +1,8 @@
 - 代码必须有适合 agent 阅读的注释
 - 优先级：使用 Element Plus 组件 > 复用已有的自定义组件 > 用 Element Plus 组件合成新的自定义组件 > 完全自定义新组件 > 不使用组件，直接在页面上编写
 - 请查阅 [Element Plus 组件文档](https://github.com/element-plus/element-plus/tree/dev/docs/en-US)
+- 请设计响应式布局，让项目能适配桌面端和移动端UI
+- 请在使用完playwright后将临时服务和playwright弹出的窗口关闭
 # OpenWolf
 
 @.wolf/OPENWOLF.md

@@ -389,6 +389,8 @@ onBeforeUnmount(() => {
 
 .home-form__submit {
   width: 100%;
+  min-height: 48px;
+  height: 48px;
 }
 
 .home-form__action {
